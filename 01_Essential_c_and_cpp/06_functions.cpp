@@ -4,7 +4,7 @@ using namespace std;
 void func(int x,int *y,int &z)
 {
     x++;
-    *y++;
+    (*y)++;
     z++;
 }
 int main()
