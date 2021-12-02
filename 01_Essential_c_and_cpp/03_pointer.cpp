@@ -12,7 +12,7 @@ int main()
     p3[0]=5;
     printf("Heap Memory array %d %d \n",p2[0],p3[0]);
     free(p2);//dealocating heap memory in c
-    delete [ ] p3;//dealocating heap memory in c++
+    delete [ ] p3;//dealocating heap memory in c++ 
     printf("Heap Memory array %d %d ",p2[0],p3[0]);
     return 0;
 }
