@@ -7,9 +7,18 @@ int fac(int n)
     else 
        return n*fac(n-1);
 }
+int Ifac(int n)
+{
+    int i,factorial=1;
+    for(i=1;i<=n;i++)
+        factorial=factorial*i;
+    return factorial;
+
+}
+
 int main()
 {
-    int factorial=fac(5);
+    int factorial=Ifac(5);
     cout<<factorial;
     return 0;
 }
