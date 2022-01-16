@@ -2,13 +2,35 @@
 using namespace std;
 
 class Array{
-public:
+private:
     int* A;
     int size;
     int length;
+public:
+    Array()
+    {
+        size=10;
+        length=0;
+        A=new int[size];
 
+    }
+    Array(int size)
+    {
+        this->size=size;
+        length=0;
+        A=new int[size];
 
-
+    }
+    void insert(int index,int value){
+        if(index>=0 && index<=size){
+        for(int i=length;i>index;i--)
+        {
+            A[i]=A[i-1];
+        }
+        A[index]=value;
+        length++;
+        }
+    }
     void append(int x){
         if(length<size)
         {
@@ -16,6 +38,7 @@ public:
             length++;
         }
     }
+    
     void display(){
         for (int i = 0; i < length; i++){
             cout << A[i] << " ";
@@ -32,16 +55,6 @@ public:
         }
         return -1;
     }
-    void insert(int index,int value){
-        if(index>=0 && index<=size){
-            for(int i=length;i>index;i--)
-            {
-                A[i]=A[i-1];
-            }
-            A[index]=value;
-            length++;
-        }
-    }
     void deletion(int index)
     {
         if(index>=0 && index<=length)
@@ -52,7 +65,7 @@ public:
             }
             length--;
             std::cout<<"deleted index "<<index<<" element in array"<<std::endl;
-        }
+        }    
     }
     int Sum()
     {
@@ -62,51 +75,57 @@ public:
         return sum;
     }
 
+    ~Array()
+    {
+        delete []A;
+    }
+    
 };
 
+
+
+
 int main() {
-    Array arr;
-    int i,x;
+    int i,x,sz;
     cout<<"Enter size of array ";
-    cin>>arr.size;
-    arr.A=new int[arr.size];
-    arr.length=0;
+    cin>>sz;
+    Array arr(sz);
     int ch;
     do{
         cout<<"\nMenu\n";
-        cout<<"\n1.Append\n";
-        cout<<"\n2.Insert\n";
-        cout<<"\n3.Search\n";
-        cout<<"\n4.Sum\n";
-        cout<<"\n5.Display\n";
-        cout<<"\n6.Delete\n";
-        cout<<"\n7.Exit\n";
+        cout<<"1.Append\n";
+        cout<<"2.Insert\n";
+        cout<<"3.Search\n";
+        cout<<"4.Sum\n";
+        cout<<"5.Display\n";
+        cout<<"6.Delete\n";
+        cout<<"7.Exit\n";
 
         cin>>ch;
         switch(ch)
         {
             case 1:
-                cout<<"\nEnter element to appended\n";
+                cout<<"Enter element to appended\n";
                 cin>>x;
                 arr.append(x);
                 break;
 
             case 2:
-                cout<<"\nEnter element to be inserted\n";
+                cout<<"Enter element to be inserted\n";
                 cin>>x;
-                cout<<"\nEnter position of element\n";
+                cout<<"Enter position of element\n";
                 cin>>i;
                 arr.insert(i,x);
                 break;
 
             case 3:
-                cout<<"\nEnter element to be searched\n";
+                cout<<"Enter element to be searched\n";
                 cin>>x;
                 i=arr.l_search(x);
                 if(i==-1)
-                    cout<<"\nElement not found\n";
+                    cout<<"Element not found\n";
                 else
-                    cout<<"\nElement found at "<<i<<" position ";
+                    cout<<"Element found at "<<i<<" position ";
                 break;
 
             case 4:
@@ -118,20 +137,13 @@ int main() {
                 break;
 
             case 6:
-                cout<<"\nEnter index at which elements will be deleted\n";
+                cout<<"Enter index at which elements will be deleted\n";
                 cin>>i;
                 arr.deletion(i);
                 break;
-            default:
-                cout<<"\nEnter valid number\n";
 
         }
     }while(ch<7);
-
-
-
-
-    //insert delete search sum display exit
 
     return 0;
 }
