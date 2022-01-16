@@ -68,7 +68,7 @@ float Avg(struct Array arr)//u can call function sum in avg and type cast it as 
     }
     return sum/arr.length;
 }
-int RSum(struct Array arr,int n)
+int RSum(struct Array arr,int n)//by recursion
 {
     if(n>=0)
         return RSum(arr,n-1)+arr.A[n];

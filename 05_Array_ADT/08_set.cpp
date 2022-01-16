@@ -137,18 +137,18 @@ struct Array Difference(struct Array arr1,struct Array arr2)
         {
             if(arr1.A[i]<arr2.A[j])
                 arr3.A[k++]=arr1.A[i++];
+
+            else if(arr2.A[j]<arr1.A[i])
+                j++;
+                
             else if(arr1.A[i]==arr2.A[j])
             {
                 i++;
                 j++;
             }
-            else
-                arr3.A[k++]=arr2.A[j++];
         }
         for(;i<arr1.length;i++)
             arr3.A[k++]=arr1.A[i];
-        for(;j<arr2.length;j++)
-            arr3.A[k++]=arr2.A[j];
         arr3.length=k;
         arr3.size=100;
         return arr3;
@@ -170,20 +170,6 @@ struct Array Difference(struct Array arr1,struct Array arr2)
             if(m==0)
                 arr3.A[k++]=arr1.A[i];
         }
-        for(i=0;i<arr2.length;i++)
-        {
-            m=0;
-            for(j=0;j<arr1.length;j++)
-            {
-                if(arr2.A[i]==arr1.A[j])
-                    {
-                        m=1;
-                        break;
-                    }
-            }
-            if(m==0)
-                arr3.A[k++]=arr2.A[i];
-        }
         arr3.length=k;
         arr3.size=100;
         return arr3;
@@ -192,9 +178,9 @@ struct Array Difference(struct Array arr1,struct Array arr2)
 
 int main()
 {
-    struct Array arr1={{1,3,4,5,6,10,7,15,18},100,9};
-    struct Array arr2={{3,5,6,9,10,21,23,45},100,8};
-    struct Array u=Difference(arr1,arr2);
-    Display(u);
+    struct Array arr1={{2,6,10,15,12,25},100,6};
+    struct Array arr2={{3,6,7,15,20},100,5};
+    struct Array d=Difference(arr1,arr2);
+    Display(d);
     return 0;
 }
