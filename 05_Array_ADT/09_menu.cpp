@@ -1,9 +1,10 @@
 #include <iostream>
 using namespace std;
 
+template<class T>
 class Array{
 private:
-    int* A;
+    T * A;
     int size;
     int length;
 public:
@@ -11,17 +12,17 @@ public:
     {
         size=10;
         length=0;
-        A=new int[size];
+        A=new T[size];
 
     }
     Array(int size)
     {
         this->size=size;
         length=0;
-        A=new int[size];
+        A=new T[size];
 
     }
-    void insert(int index,int value){
+    void insert(int index,T value){
         if(index>=0 && index<=size){
         for(int i=length;i>index;i--)
         {
@@ -31,7 +32,7 @@ public:
         length++;
         }
     }
-    void append(int x){
+    void append(T x){
         if(length<size)
         {
             A[length]=x;
@@ -41,10 +42,10 @@ public:
     
     void display(){
         for (int i = 0; i < length; i++){
-            cout << A[i] << " ";
+            std::cout<<A[i] << " ";
         }
     }
-    int l_search(int value)
+    int l_search(T value)
     {
         for(int i=0;i<length;i++)
         {
@@ -67,13 +68,15 @@ public:
             std::cout<<"deleted index "<<index<<" element in array"<<std::endl;
         }    
     }
-    int Sum()
+    T Sum()
     {
-        int sum=0;
+        T sum=0;
         for(int i=0;i<length;i++)
             sum=sum+A[i];
         return sum;
     }
+
+    Array* Union(Array);
 
     ~Array()
     {
@@ -81,15 +84,42 @@ public:
     }
     
 };
+template<class T>
+Array<T>* Array<T>::Union(Array<T> arr2)
+{
+    Array* arr3=new Array[10];
+    int i=0,j=0,k=0,m=0;
+    for(i=0;i<length;i++,k++)
+        arr3->A[k]=A[i];
+    for(i=0;i<arr2.length;i++)
+        {
+            int l=0,j=0;
+            while(j<length)
+            {
+                if(arr2.A[i]==A[j])
+                {
+                    l=1;
+                    break;
+                }
+                j++;
 
+            }
+            if(l==0)
+                arr3->A[k++]=arr2.A[i];
+        }
+        arr3->length=k;
+        arr3->size=100;
+        return arr3;
+    }
 
 
 
 int main() {
-    int i,x,sz;
+    int i,sz;
+    int x;
     cout<<"Enter size of array ";
     cin>>sz;
-    Array arr(sz);
+    Array<int> arr(sz);
     int ch;
     do{
         cout<<"\nMenu\n";
@@ -144,6 +174,13 @@ int main() {
 
         }
     }while(ch<7);
+
+    Array<int> a2(10);
+    a2.append(4);
+    a2.append(5);
+    a2.append(6);
+    Array<int> *a3=arr.Union(a2);
+    a3->display();
 
     return 0;
 }
