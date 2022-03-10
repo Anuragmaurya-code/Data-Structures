@@ -4,7 +4,7 @@ struct matrix{ //structure of matrix
     int n;
     int *A;
 };
-void set(struct matrix *a,int i,int j,int x)
+void set(struct matrix *a,int i,int j,int x)//set for row major mapping
 {
     
     if(i>=j)
@@ -15,7 +15,7 @@ void set(struct matrix *a,int i,int j,int x)
 
 }
 
-int get(struct matrix *a,int i,int j)
+int get(struct matrix *a,int i,int j)//get for row major mapping
 {
     
     if(i>=j)
@@ -26,7 +26,7 @@ int get(struct matrix *a,int i,int j)
     else
         return 0;
 }
-void Display(struct matrix *a)
+void Display(struct matrix *a)//Display for row major mapping
 {
     for(int i=1;i<=(a->n);i++)//here  i is considered as matrix index so is started from 1
     {
@@ -43,7 +43,7 @@ void Display(struct matrix *a)
         printf("\n");
     }
 }
-void cset(struct matrix *a,int i,int j,int x)
+void cset(struct matrix *a,int i,int j,int x)//set for column major mapping
 {   
     if(i>=j)
     {
@@ -56,7 +56,7 @@ void cset(struct matrix *a,int i,int j,int x)
 
 }
 
-int cget(struct matrix *a,int i,int j)
+int cget(struct matrix *a,int i,int j)//get for column major mapping
 {
     
     if(i>=j)
@@ -66,7 +66,7 @@ int cget(struct matrix *a,int i,int j)
     else
         return 0;
 }
-void cDisplay(struct matrix *a)
+void cDisplay(struct matrix *a)//Display column major mapping
 {
     for(int i=1;i<=(a->n);i++)//here  i is considered as matrix index so is started from 1
     {
