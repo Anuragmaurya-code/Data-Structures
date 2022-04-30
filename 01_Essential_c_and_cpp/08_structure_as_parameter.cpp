@@ -43,6 +43,6 @@ int main()
 
     // creating structure in heap memory and accesing them using function
     struct RECTANGLE *ptr=fun4();
-    cout<<"After creating structure in heap memory "<<ptr->length<<" "<< ptr->breath<<endl;
+    cout<<"After creating structure in heap memory "<<ptr->length<<" "<< ptr->breath<<endl;// -> is to access struct elements using pointer
     return 0;
 }
