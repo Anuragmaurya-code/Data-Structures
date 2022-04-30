@@ -11,8 +11,8 @@ struct reportcard
 int main()
 {
     int i;
-    struct reportcard r[3];
-    for(i=0;i<3;i++)
+    struct reportcard r[3];//declartion
+    for(i=0;i<3;i++)//initialization
     {
         cout<<"Name ";
         cin>>r[i].name;
