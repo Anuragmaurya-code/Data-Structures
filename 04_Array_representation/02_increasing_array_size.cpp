@@ -8,7 +8,7 @@ int main()
     for(int i=0;i<5;i++)
         q[i]=p[i];
     q[6]=456;
-    p=q;
+    p=q;//changing size of array
     q=NULL;
     for(int i=0;i<10;i++)
         std::cout<<p[i]<<std::endl;

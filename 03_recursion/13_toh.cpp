@@ -14,7 +14,7 @@ void TOH1(int n,int A,int B,int C,int D)//for four towes
     {
     TOH1(n-1,A,B,D,C);
     std::cout<<"("<<A<<","<<D<<")"<<std::endl;
-    TOH1(n-1,C,A,B,D);
+    TOH1(n-1,C,A,B,D); 
     }
 }
 
