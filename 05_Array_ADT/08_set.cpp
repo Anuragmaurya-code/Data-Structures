@@ -11,7 +11,7 @@ void Display(struct Array arr)
     for(int i=0;i<arr.length;i++)
     {
         std::cout<<arr.A[i]<<" ";
-    }
+     }
 }
 void swap(int *x,int *y)
 {
@@ -67,7 +67,7 @@ struct Array Union(struct Array arr1,struct Array arr2)
             int l=0,j=0;
             while(j<arr1.length)
             {
-                if(arr2.A[i]==arr3.A[j])
+                if(arr2.A[i]==arr3.A[j])//checking for every element of array 1 if it exist in array 2
                 {
                     l=1;
                     break;

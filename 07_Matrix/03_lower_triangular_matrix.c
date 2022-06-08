@@ -9,7 +9,7 @@ void set(struct matrix *a,int i,int j,int x)//set for row major mapping
     
     if(i>=j)
     {
-        int t=((i*(i-1)/2)+(j-1));
+        int t=((i*(i-1)/2)+(j-1));// it means sum of i-1 rows then   the jth element in matrix 
         a->A[t]=x;
     }
 
@@ -87,7 +87,7 @@ int main()
     int num,x;
     //using row major formula
     struct matrix m;
-    printf("Enter number of elements ");
+    printf("Enter number dimension of matrix ");
     scanf("%d",&num);
     m.n=num;
     m.A=(int *)malloc((m.n*(m.n+1)/2)*sizeof(int));//as it contains this many number of elements

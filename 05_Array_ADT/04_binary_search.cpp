@@ -45,7 +45,7 @@ int RBinarySearch(struct Array arr,int value,int l,int h)
         int mid=(l+h)/2;
         if(value==arr.A[mid])
             return mid;  
-        else if(value<arr.A[mid])
+        else if(value<ar r.A[mid])
             return RBinarySearch(arr,value,l,mid-1);
         else 
             return RBinarySearch(arr,value,mid+1,h);

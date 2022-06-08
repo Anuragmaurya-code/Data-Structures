@@ -67,8 +67,8 @@ struct sparse *add(struct sparse *s1,struct sparse *s2)
             
             else//row and column both are same
             {
-                sum->elm[k]=s1->elm[i];//copy comple s1 struct elm elements
-                sum->elm[k++].x=s2->elm[j++].x+s1->elm[i++].x;//add s1 and s2 values
+                sum->elm[k]=s1->elm[i++];//copy comple s1 struct elm elements
+                sum->elm[k++].x=sum->elm[k].x+s2->elm[j++].x;//add s1 and s2 values
             }
     }
     //remaining elements 

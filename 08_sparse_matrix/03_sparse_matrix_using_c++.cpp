@@ -22,7 +22,7 @@ class Sparse
         this->num=num;
         elm=new Element[this->num];
     }
-    friend istream & operator >>(istream &is,Sparse &s);
+    friend istream & operator >>(istream &is,Sparse &s);// friend is a global function
     friend ostream & operator << (ostream &os,Sparse &s);
     Sparse operator+(Sparse &s);
 };
@@ -32,26 +32,26 @@ Sparse Sparse::operator+(Sparse &s)
                     // j for s2 and k for sum
     Sparse *sum=new Sparse(m,n,num+s.num);
     sum->elm=new Element[num+s.num];
-    while (i<num && j<this->num)
+    while (i<num && j<s.num)
     {
-        if(elm[i].i<this->elm[j].i)// row of s1 is less than s2
+        if(elm[i].i<s.elm[j].i)// row of s1 is less than s2
             sum->elm[k++]=elm[i++];
 
-        else if(elm[i].i>this->elm[j].i)//row of s2 is less than s1
-            sum->elm[k++]=this->elm[j++];
+        else if(elm[i].i>s.elm[j].i)//row of s2 is less than s1
+            sum->elm[k++]=s.elm[j++];
 
         else
         {
-            if(elm[i].j<this->elm[j].j)//row of s1 and s2 is same but column of s1 is less than s2
+            if(elm[i].j<s.elm[j].j)//row of s1 and s2 is same but column of s1 is less than s2
                 sum->elm[k++]=elm[i++];
 
-            else if(elm[i].j>this->elm[j].j)//row of s1 and s2 is same but column of s2 is less than s1
-            sum->elm[k++]=this->elm[j++];
+            else if(elm[i].j>s.elm[j].j)//row of s1 and s2 is same but column of s2 is less than s1
+            sum->elm[k++]=s.elm[j++];
             
             else//row and column both are same
             {
                 sum->elm[k]=elm[i];//copy comple s1 struct elm elements
-                sum->elm[k++].x=this->elm[j++].x+elm[i++].x;//add s1 and s2 values
+                sum->elm[k++].x=s.elm[j++].x+elm[i++].x;//add s1 and s2 values
             }
         }
         
@@ -61,7 +61,7 @@ Sparse Sparse::operator+(Sparse &s)
         sum->elm[k++]=elm[i];
 
     for(;j<this->num;j++)
-        sum->elm[k++]=this->elm[j];
+        sum->elm[k++]=s.elm[j];
 
     sum->num=k;
     return *sum;
@@ -81,6 +81,7 @@ ostream & operator << (ostream &os,Sparse &s)
     int i,j;
     int a;
     a=0;
+    cout<<endl;
     for(i=0;i<s.m;i++)
     {
         for(j=0;j<s.n;j++)
@@ -95,7 +96,7 @@ ostream & operator << (ostream &os,Sparse &s)
         }
         cout<<endl;
     }
-    cout<<"---------------------------------------------------------------";
+    cout<<"---------------------------------------------------------------\n";
 }
 int main()
 {
