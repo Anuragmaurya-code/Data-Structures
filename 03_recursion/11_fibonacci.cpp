@@ -38,7 +38,7 @@ int mfib(int n)//fibonacci series using recursion using memoization
         return n;
     else
     {
-        if(F[n-1]==-1)
+        if(F[n-1]==-1)//it means no value entered till yet as it is -1
             F[n-1]=mfib(n-1);
         if(F[n-2]==-1)
             F[n-2]=mfib(n-2);
