@@ -8,19 +8,6 @@ struct Node
     struct Node *next;
 }*first=NULL;
 
-int count(struct Node *p)//counting of nodes
-{
-    int c=0;
-    
-    p=first;
-    while(p)
-    {
-        c++;
-        p=p->next;
-    }
-    return c;
-}
-
 void create(int A[],int n)
 {
     int i;
@@ -51,43 +38,42 @@ void Display()
     }
 }
 
-
-void insert(int pos ,int value)
+void S_Insert(struct Node *p,int value)
 {
-    if(value<0 || value>count(first))
-    return ;
-
-    struct Node * p;
+    struct Node *q;
     struct Node *t;
-    p=first;
     t=new Node;
-    if(pos==0)
-    {
-        t->data=value;
-        t->next=first;
+    t->data=value;
+    t->next=NULL;
+
+    if(first==NULL)
         first=t;
-    }
-    else if(pos>0)
+    else
     {
-        for(int i=0;i<pos-1 && p;i++)//as it go to next node after one loop  and the node starts from 0
-                                    //where as position starts from 1
+        while (p && p->data<value)
         {
+            q=p;
             p=p->next;
         }
-        t->data=value;
-        t->next=p->next;
-        p->next=t;
+        if(p==first)
+        {
+            t->next=first;
+            first=t;
+        }
+        else{
+            q->next=t;
+            t->next=p;
+        }
+        
     }
+
 }
+
 int main()
 {
-    int A[]={4,5,8,9,7};
+    int A[]={4,7,9,12,18};
     create(A,5);
-    cout<< " Before insert"<<endl;
-    Display();
-    insert(73,8);
-
-    cout<< " After insert"<<endl;
+    S_Insert(first,8);
     Display();
 
     return 0;

@@ -8,19 +8,6 @@ struct Node
     struct Node *next;
 }*first=NULL;
 
-int count(struct Node *p)//counting of nodes
-{
-    int c=0;
-    
-    p=first;
-    while(p)
-    {
-        c++;
-        p=p->next;
-    }
-    return c;
-}
-
 void create(int A[],int n)
 {
     int i;
@@ -40,6 +27,19 @@ void create(int A[],int n)
     }
 }
 
+int count(struct Node *p)//counting of nodes
+{
+    int c=0;
+    
+    p=first;
+    while(p)
+    {
+        c++;
+        p=p->next;
+    }
+    return c;
+}
+
 void Display()
 {
     struct Node *p;
@@ -51,43 +51,36 @@ void Display()
     }
 }
 
-
-void insert(int pos ,int value)
+int Delete(struct Node *p,int index)
 {
-    if(value<0 || value>count(first))
-    return ;
-
-    struct Node * p;
-    struct Node *t;
-    p=first;
-    t=new Node;
-    if(pos==0)
+    struct Node *q=NULL;
+    int x=-1;//to store data of deleted node
+    if(index<0 || index>count(p))
+        return -1;
+    if(index==1)
     {
-        t->data=value;
-        t->next=first;
-        first=t;
+        x=first->data;
+        first=first->next;
     }
-    else if(pos>0)
+    else
     {
-        for(int i=0;i<pos-1 && p;i++)//as it go to next node after one loop  and the node starts from 0
-                                    //where as position starts from 1
+        for(int i=0;i<index-1;i++)
         {
+            q=p;
             p=p->next;
         }
-        t->data=value;
-        t->next=p->next;
-        p->next=t;
+        x=p->data;
+        q->next=p->next;
     }
+
+    delete p;
+    return x;
 }
 int main()
 {
-    int A[]={4,5,8,9,7};
+    int A[]={4,7,9,12,18};
     create(A,5);
-    cout<< " Before insert"<<endl;
-    Display();
-    insert(73,8);
-
-    cout<< " After insert"<<endl;
+    cout<<"Deleted : "<<Delete(first,3)<<endl;
     Display();
 
     return 0;
