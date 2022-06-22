@@ -38,24 +38,38 @@ void Display()
     }
 }
 
-bool isSorted(struct Node *p)
+void Remove_Duplicate(struct Node *p)
 {
-    int n=INT32_MIN;
-    while(p!=NULL)
+    struct Node *q;
+    q=new Node;
+    q=p->next;
+    while(q!=NULL)
     {
-        if(p->data<n)
-            return false;
-        n=p->data;
-        p=p->next;
-    }
-    return true;
+        if(p->data!=q->data)
+        {
+            p=q;
+            q=q->next;
+        }
+        else
+        {
+            p->next=q->next;
+            delete q;
+            q=p->next;
+        }
+    } 
+
 }
 
 int main()
 {
-    int A[]={4,7,19,12,18};
-    create(A,5);
-    cout<<"Sorted : "<<isSorted(first)<<endl;
+    int A[]={4,7,7,7,12,12,15,18};
+    create(A,8);
+    cout<<"before\n";
+    Display();
+    cout<<"After\n";
+    Remove_Duplicate(first);
+    Display();
+    
     
 
     return 0;
