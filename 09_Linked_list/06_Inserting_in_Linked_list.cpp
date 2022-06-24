@@ -54,7 +54,7 @@ void Display()
 
 void insert(int pos ,int value)
 {
-    if(value<0 || value>count(first))
+    if(pos<0 || pos>count(first))
     return ;
 
     struct Node * p;
@@ -85,7 +85,7 @@ int main()
     create(A,5);
     cout<< " Before insert"<<endl;
     Display();
-    insert(73,8);
+    insert(2,78);
 
     cout<< " After insert"<<endl;
     Display();
