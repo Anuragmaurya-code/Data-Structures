@@ -70,19 +70,38 @@ int isFull(Stack st)
 
 int isOperand(char s)
 {
-    if(s=='*' || s=='/' || s=='+' || s=='-')
+    if(s=='*' || s=='/' || s=='+' || s=='-' || s=='^' || s=='(' || s==')')
         return 0;
     else 
         return 1;
 }
 
-int pre(char s)
+int out_pre(char s)
 {
-    if(s=='*' || s=='/')
-        return 2;
-    else if(s=='+' || s=='-')
+    if(s=='+' || s=='-')
         return 1;
+    else if(s=='*' || s=='/')
+        return 3;
+    else if(s=='^')
+        return 6;
+    else if(s=='(')
+        return 7;
+    else if(s==')')
+        return 0;
     return 0;
+}
+
+int ins_pre(char s)
+{
+    if(s=='+' || s=='-')
+        return 2;
+    else if(s=='*' || s=='/')
+        return 4;
+    else if(s=='^')
+        return 5;
+    else if(s=='(')
+        return 0;
+    return -1;
 }
 
 char* ToPost(char *s)
@@ -100,11 +119,15 @@ char* ToPost(char *s)
            postfix[j++]=s[i++];
         else
         {
-            if(pre(s[i])>pre(TopValue(st)))//because of this comparison stack cant be expty so # is pushed
+            if(out_pre(s[i])>ins_pre(TopValue(st)))//because of this comparison stack cant be expty so # is pushed
                 push(&st,s[i++]);
-            else
+            else if(out_pre(s[i])<ins_pre(TopValue(st)))
             {
                    postfix[j++]=pop(&st);
+            }
+            else{
+                pop(&st);
+                i++;
             }
         }
     }
@@ -118,7 +141,7 @@ char* ToPost(char *s)
 
 int main()
 {
-    char s[]="a+b*c/d+e";
+    char s[]="((a+b)*c)-d^e^f";
     char *postfix=ToPost(s);
     cout<<postfix;
     return 0;
