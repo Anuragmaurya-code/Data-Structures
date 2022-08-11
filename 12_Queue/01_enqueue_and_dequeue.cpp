@@ -38,7 +38,7 @@ int Queue::dequeue()
 {
     int x=-1;
     if(front==rear)
-        cout<<"Queue is full\n";
+        cout<<"Queue is Empty\n";
     else{
         ++front;
         x=Q[front];
