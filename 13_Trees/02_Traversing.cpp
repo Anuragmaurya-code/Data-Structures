@@ -17,6 +17,7 @@ class createtree
     void display();
     void postorder();
     void preorder();
+    void inorder();
     void rinorder(Node *);//recursive inorder
     
 };
@@ -29,6 +30,28 @@ void createtree::rinorder(Node *t)
         rinorder(t->rchild);
     }
     
+}
+void createtree::inorder()
+{
+     struct Stack st;
+    create(&st);
+    long int num;
+    Node *t=root;
+    while(t || !isEmpty(st))
+    {
+        if(t!=NULL)
+        {
+            push(&st,(long int)t);
+            t=t->lchild;
+        }
+        else
+        {
+            num=pop(&st);
+            t=(Node *)num;
+            cout<<t->data<<" ";
+            t=t->rchild;
+        }
+    }
 }
 void createtree::preorder()
 {
@@ -132,7 +155,7 @@ createtree::createtree()
 int main()
 {
     createtree r;
-    r.rinorder(root);
+    r.inorder();
     return 0;
 
 }
