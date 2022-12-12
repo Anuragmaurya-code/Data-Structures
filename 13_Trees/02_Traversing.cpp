@@ -41,13 +41,13 @@ void createtree::inorder()
     {
         if(t!=NULL)
         {
-            push(&st,(long int)t);
+            push(&st,(long int)t);//storing address in long int
             t=t->lchild;
         }
         else
         {
             num=pop(&st);
-            t=(Node *)num;
+            t=(Node *)num;// long int to address
             cout<<t->data<<" ";
             t=t->rchild;
         }
