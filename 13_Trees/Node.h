@@ -1,7 +1,12 @@
-class Node
-{
-    public:
-    Node *lchild;
+#ifndef NODE_H
+#define NODE_H
+
+typedef struct Node {
+    struct Node *lchild;
     int data;
-    Node *rchild;
-}*root=new Node;
+    struct Node *rchild;
+} Node;
+
+extern Node *root;
+
+#endif
